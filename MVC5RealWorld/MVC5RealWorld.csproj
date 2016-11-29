@@ -258,6 +258,9 @@
     <Content Include="Views\Chores\IndexChild.cshtml" />
     <Content Include="Views\Rewards\IndexChild.cshtml" />
     <Content Include="Views\Chores\EditExtension.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Documents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

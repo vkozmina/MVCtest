@@ -100,7 +100,7 @@ namespace MVC5RealWorld.Controllers
             UM.DeleteUser(userID);
             return Json(new { success = true });
         }
-
+        
         public ActionResult EditProfile()
         {
             string loginName = User.Identity.Name;
@@ -121,6 +121,20 @@ namespace MVC5RealWorld.Controllers
                 ViewBag.Status = "Update Sucessful!";
             }
             return View(profile);
+        }
+
+        //here are our default ones
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        public ActionResult Documents()
+        {
+            return View();
         }
 
     }

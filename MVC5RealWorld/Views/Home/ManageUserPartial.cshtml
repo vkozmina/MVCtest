@@ -10,7 +10,7 @@
             <tr>
                 <th>ID</th>
                 <th>Login ID</th>
-                <th>Password</th>
+                <th>@*Password*@</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>
@@ -29,7 +29,7 @@
                 <tr>
                     <td> @Html.DisplayFor(m => i.SYSUserID)</td>
                     <td> @Html.DisplayFor(m => i.LoginName)</td>
-                    <td> @Html.DisplayFor(m => i.Password)</td>
+                    <td> @Html.HiddenFor(m => i.Password)</td>
                     <td> @Html.DisplayFor(m => i.FirstName)</td>
                     <td> @Html.DisplayFor(m => i.LastName)</td>
                     <td> @Html.DisplayFor(m => i.Gender)</td>
@@ -202,13 +202,14 @@
             initDialog("Edit");
             $(".alert-success").empty();
             var row = $(this).closest('tr');
-            //console.log(row.find("td:eq(11)").html().trim());
-           // console.log(row.find("td:eq(8)").val());
-            //console.log(row.find("td:eq(8)").html().trim());
+            ////console.log(row.find("td:eq(11)").html().trim());
+            //console.log(row.find("td:eq(2)").html().trim());
+            //console.log(row.find("td:eq(2) > input").val());
+            ////console.log(row.find("td:eq(8)").html().trim());
 
             $("#hidID").val(row.find("td:eq(0)").html().trim());
             $("#txtLoginName").val(row.find("td:eq(1)").html().trim());
-            $("#txtPassword").val(row.find("td:eq(2)").html().trim());
+            $("#txtPassword").val(row.find("td:eq(2) > input").val());
             $("#txtFirstName").val(row.find("td:eq(3)").html().trim());
             $("#txtLastName").val(row.find("td:eq(4)").html().trim());
             $("#ddlGender").val(row.find("td:eq(5)").html().trim());

@@ -25,16 +25,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ADDicting Chores", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Context.User.Identity.Name.Length > 0){
+                    @Html.ActionLink("ADDicting Chores", "Welcome", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }else{
+                    @Html.ActionLink("ADDicting Chores", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Addicting Chores", "Index", "Home")</li>*@
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Documents", "Documents", "Home")</li>
-                    <li>@Html.ActionLink("Children", "AdminOnly", "Home")</li>
-                        @if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
+                    @if (Context.User.Identity.Name.Length > 0)
+                    {
+                        @*<li>@Html.ActionLink("Children", "AdminOnly", "Home")</li>*@
+                        if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
                         {
                             <li>@Html.ActionLink("Chores", "Index", "Chores")</li>
                         }
@@ -42,24 +46,25 @@
                         {
                             <li>@Html.ActionLink("Chores", "IndexChild", "Chores")</li>
                         }
-                    
-                    
 
-                    @if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
-                    {
-                        <li>@Html.ActionLink("Rewards", "Index", "Rewards")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Rewards", "IndexChild", "Rewards")</li>
-                    }
-                    @if (Context.User.Identity.Name.Length > 0)
-                    {
+
+
+                        if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
+                        {
+                            <li>@Html.ActionLink("Rewards", "Index", "Rewards")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Rewards", "IndexChild", "Rewards")</li>
+                        }
                         <li>@Html.ActionLink("Edit Profile", "EditProfile", "Home")</li>
                         <li>@Html.ActionLink("Signout", "SignOut", "Account")</li>
                     }
                     else
                     {
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Documents", "Documents", "Home")</li>
                         <li>@Html.ActionLink("Login", "LogIn", "Account")</li>
                         <li>@Html.ActionLink("Signup Now!", "SignUp", "Account")</li>
                     }

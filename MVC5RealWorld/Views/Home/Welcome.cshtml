@@ -12,16 +12,32 @@
 @*@IsUserInRole(Context.User.Identity.Name,"Admin")
 @IsUserInRole(Context.User.Identity.Name, "Toddler")*@
 
-<div  id = "divUserListContainer" >
+
     @if (IsUserInRole(Context.User.Identity.Name, "Admin"))
     { @*@:yes you're an admin*@
-        @Html.Action("ManageUserPartial", "Home")
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a data-toggle="collapse" href="#divUserListContainer" aria-expanded="False" aria-controls="divUserListContainer">
+                        Manage the children / users
+                    </a>
+                </h3>
+            </div>
+        </div>
+        <div id="divUserListContainer" class="panel-body collapse">
+            If you're seeing this, you're an Admin! :)
+            @Html.ActionLink("Create new account", "SignUp", "Account")
+            <div>
+                @Html.Action("ManageUserPartial", "Home")
+            </div>
+            
+        </div>
     }
-    @*@if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
-    { @:YOU ARE SUCH A GOOD TODDLER YES YOU ARE :)
+            @*@if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
+                { @:YOU ARE SUCH A GOOD TODDLER YES YOU ARE :)
 
-    }*@
-</div>
+                }*@
+       
 
 
 
