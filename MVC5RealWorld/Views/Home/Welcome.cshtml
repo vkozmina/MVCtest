@@ -33,6 +33,72 @@
             
         </div>
     }
+    else
+    {
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a data-toggle="collapse" href="#divUserListContainer" aria-expanded="True" aria-controls="divUserListContainer">
+                        Wallet
+                    </a>
+                </h3>
+            </div>
+            <div id="divUserListContainer" class="panel-body collapse in">
+                @{
+                    var list = getWalletValue(Context.User.Identity.Name);
+                }
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Bronze</th>
+                        <th>Silver</th>
+                        <th>Gold</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>@list[0]</td>
+                        <td>@list[1]</td>
+                        <td>@list[2]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a data-toggle="collapse" href="#divUserListContainer" aria-expanded="True" aria-controls="divUserListContainer">
+                        Wallet
+                    </a>
+                </h3>
+            </div>
+            <div id="divUserListContainer" class="panel-body collapse in">
+                @{
+                    var chores = getChores(Context.User.Identity.Name);
+                }
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Bronze</th>
+                            <th>Silver</th>
+                            <th>Gold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@list[0]</td>
+                            <td>@list[1]</td>
+                            <td>@list[2]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+                    }
             @*@if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
                 { @:YOU ARE SUCH A GOOD TODDLER YES YOU ARE :)
 
@@ -42,7 +108,7 @@
 
 
 @functions{
-        public bool IsUserInRole(string loginName, string roleName)
+    public bool IsUserInRole(string loginName, string roleName)
     {
         using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
         {
@@ -64,4 +130,54 @@
         }
     }
 
+    public List<int> getWalletValue(string loginName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            var user = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName));
+            var wallet = db.SYSUserProfiles.Where(o => o.SYSUserID.Equals(user.FirstOrDefault().SYSUserID));
+            List<int> moniesList = new List<int>();
+            if (wallet.Any())
+            {
+                moniesList.Add(wallet.FirstOrDefault().BronzeBalance.Value);
+                moniesList.Add(wallet.FirstOrDefault().SilverBalance.Value);
+                moniesList.Add(wallet.FirstOrDefault().GoldBalance.Value);
+                return moniesList;
+            }
+            else
+            {
+                moniesList.Add(0);
+                moniesList.Add(0);
+                moniesList.Add(0);
+                return moniesList;
+            }
+        }
+    }
+
+    public List<string> getChores(string loginName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            var user = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName));
+            var wallet = db.SYSUserProfiles.Where(o => o.SYSUserID.Equals(user.FirstOrDefault().SYSUserID));
+            var firstName = wallet.FirstOrDefault().FirstName;
+            var chores = db.Chores.Where(c => c.AssignedTo.Equals(firstName));
+
+
+            List<string> choresList = new List<string>();
+            if (wallet.Any())
+            {
+                foreach (var chore in chores)
+                {
+                    choresList.Add(chores.FirstOrDefault().Description);
+                }
+                //(chores.FirstOrDefault().ToString());
+                return choresList;
+            }
+            else
+            {
+                //No chores found
+            }
+        }
+    }
 }
