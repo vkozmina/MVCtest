@@ -60,7 +60,7 @@
         <tr>
             <td>Password</td>
             <td>
-                <input type="text" id="txtPassword" class="form-control" />
+                <input type="password" id="txtPassword" class="form-control" />
             </td>
         </tr>
         <tr>
@@ -96,7 +96,7 @@
         <tr>
             <td>Date of Birth</td>
             <td>
-                <input type="date" id="dateOfBirth" class="form-control"/>
+                <input type="text" id="dateOfBirth" class="form-control"/>
             </td>
         </tr>
         <tr>
@@ -126,6 +126,7 @@
 <script type="text/javascript">
 
     $(function () {
+        $("#dateOfBirth").datepicker();
 
         var initDialog = function (type) {
             var title = type;
@@ -201,6 +202,9 @@
             initDialog("Edit");
             $(".alert-success").empty();
             var row = $(this).closest('tr');
+            //console.log(row.find("td:eq(11)").html().trim());
+           // console.log(row.find("td:eq(8)").val());
+            //console.log(row.find("td:eq(8)").html().trim());
 
             $("#hidID").val(row.find("td:eq(0)").html().trim());
             $("#txtLoginName").val(row.find("td:eq(1)").html().trim());
@@ -209,10 +213,10 @@
             $("#txtLastName").val(row.find("td:eq(4)").html().trim());
             $("#ddlGender").val(row.find("td:eq(5)").html().trim());
             $("#ddlRoles").val(row.find("td:eq(11) > input").val());
-            $("#dateOfBirth").val(row.find("td:eq(7)").val());
-            $("#bronzeBalance").val(row.find("td:eq(8)").val());
-            $("#silverBalance").val(row.find("td:eq(9)").val());
-            $("#goldBalance").val(row.find("td:eq(10)").val());
+            $("#dateOfBirth").val(row.find("td:eq(7)").html().trim());
+            $("#bronzeBalance").val(row.find("td:eq(8)").html().trim());
+            $("#silverBalance").val(row.find("td:eq(9)").html().trim());
+            $("#goldBalance").val(row.find("td:eq(10)").html().trim());
             $("#divEdit").dialog("open");
             return false;
         });

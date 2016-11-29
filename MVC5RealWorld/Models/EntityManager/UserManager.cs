@@ -249,9 +249,9 @@ namespace MVC5RealWorld.Models.EntityManager
                                 SUP.SilverBalance = 0;
                             if (SUP.GoldBalance == null)
                                 SUP.GoldBalance = 0;
-                            SUP.BronzeBalance = SUP.BronzeBalance + user.BronzeBalance;
-                            SUP.SilverBalance = SUP.SilverBalance + user.SilverBalance;
-                            SUP.GoldBalance = SUP.GoldBalance + user.GoldBalance;
+                            SUP.BronzeBalance =  user.BronzeBalance; // + SUP.BronzeBalance 
+                            SUP.SilverBalance =  user.SilverBalance; // + SUP.SilverBalance 
+                            SUP.GoldBalance =  user.GoldBalance; // + SUP.GoldBalance 
                             db.SaveChanges();
                         }
 
