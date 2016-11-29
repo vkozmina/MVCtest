@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<MVC5RealWorld.Models.DB.Chore>
+@using System.Data.Entity
+@using MVC5RealWorld.Models.DB
+@using MVC5RealWorld.Models.EntityManager
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Chores</h2>
 
 <table class="table">
     <tr>
@@ -113,3 +116,27 @@
 }
 
 </table>
+@functions{
+    public bool IsUserInRole(string loginName, string roleName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+            if (SU != null)
+            {
+                var roles = from q in db.SYSUserRoles
+                            join r in db.LOOKUPRoles on q.LOOKUPRoleID equals r.LOOKUPRoleID
+                            where r.RoleName.Equals(roleName) && q.SYSUserID.Equals(SU.SYSUserID)
+                            select r.RoleName;
+
+                if (roles != null)
+                {
+                    return roles.Any();
+                }
+            }
+
+            return false;
+        }
+    }
+
+}

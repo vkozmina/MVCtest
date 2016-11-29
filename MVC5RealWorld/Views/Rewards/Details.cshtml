@@ -1,4 +1,7 @@
 ﻿@model MVC5RealWorld.Models.DB.Reward
+@using System.Data.Entity
+@using MVC5RealWorld.Models.DB
+@using MVC5RealWorld.Models.EntityManager
 
 @{
     ViewBag.Title = "Details";
@@ -70,6 +73,39 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RewardID }) |
+
+@if (IsUserInRole(Context.User.Identity.Name, "Admin") | IsUserInRole(Context.User.Identity.Name, "Parent"))
+{
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RewardID })
     @Html.ActionLink("Back to List", "Index")
+}
+else
+{
+    @Html.ActionLink("Back to List", "IndexChild")
+}
 </p>
+
+@functions{
+    public bool IsUserInRole(string loginName, string roleName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+            if (SU != null)
+            {
+                var roles = from q in db.SYSUserRoles
+                            join r in db.LOOKUPRoles on q.LOOKUPRoleID equals r.LOOKUPRoleID
+                            where r.RoleName.Equals(roleName) && q.SYSUserID.Equals(SU.SYSUserID)
+                            select r.RoleName;
+
+                if (roles != null)
+                {
+                    return roles.Any();
+                }
+            }
+
+            return false;
+        }
+    }
+
+}
