@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>IndexChild</h2>
+<h2>Index</h2>
 
 <table class="table">
     <tr>
@@ -27,33 +27,33 @@
         <th>
             @Html.DisplayNameFor(model => model.GoldValue)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.IsAssigned)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.IsCompleted)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsConfirmed)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.MaturityLevel)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.StartDate)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.DeadlineDate)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.NeedExtension)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequestedExtensionDeadline)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.Multiplier)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -77,33 +77,33 @@
         <td>
             @Html.DisplayFor(modelItem => item.GoldValue)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.IsAssigned)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.IsCompleted)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsConfirmed)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.MaturityLevel)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.DeadlineDate)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.NeedExtension)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RequestedExtensionDeadline)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.Multiplier)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.ChoreID }) |
             @Html.ActionLink("Extension", "EditExtension", new { id = item.ChoreID })

@@ -76,8 +76,11 @@ namespace MVC5RealWorld.Models.ViewModel
         [Display(Name = "Date Of Birth")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+        [Display(Name = "Bronze Balance")]
         public Nullable<int> BronzeBalance { get; set; }
+        [Display(Name = "Silver Balance")]
         public Nullable<int> SilverBalance { get; set; }
+        [Display(Name = "Gold Balance")]
         public Nullable<int> GoldBalance { get; set; }
     }
 
