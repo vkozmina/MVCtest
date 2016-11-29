@@ -61,7 +61,7 @@ namespace MVC5RealWorld.Controllers
         }
 
         [Authorize]
-        public ActionResult UpdateUserData(int userID, string loginName, string password, string firstName, string lastName, string gender,string dateOfBirth, int bbal, int sbal, int gbal, int roleID = 0 )
+        public ActionResult UpdateUserData(int userID, string loginName, string password, string firstName, string lastName, string gender,string dateOfBirth, int? bbal, int? sbal, int? gbal, int roleID = 0 )
         {
             UserProfileView UPV = new UserProfileView();
             UPV.SYSUserID = userID;
@@ -71,6 +71,12 @@ namespace MVC5RealWorld.Controllers
             UPV.LastName = lastName;
             UPV.Gender = gender;
             //UPV.DateOfBirth = dateOfBirth;
+            if (bbal == null)
+                bbal = 0;
+            if (sbal == null)
+                sbal = 0;
+            if (gbal == null)
+                gbal = 0;
             UPV.BronzeBalance = bbal;
             UPV.SilverBalance = sbal;
             UPV.GoldBalance = gbal;
