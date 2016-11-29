@@ -10,11 +10,11 @@
 
 <h2>Chores</h2>
 
+
+<h2> Unassigned </h2>
 <table class="table">
+    
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AssignedTo)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
@@ -30,41 +30,90 @@
         <th>
             @Html.DisplayNameFor(model => model.GoldValue)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.IsAssigned)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.IsCompleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsConfirmed)
-        </th>*@
+
         <th>
             @Html.DisplayNameFor(model => model.MaturityLevel)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>*@
+
         <th>
             @Html.DisplayNameFor(model => model.DeadlineDate)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.NeedExtension)
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.AssignedTo == "unassigned")
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BronzeValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilverValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoldValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaturityLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadlineDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ChoreID }) |
+                @Html.ActionLink("Extension", "EditExtension", new { id = item.ChoreID })
+
+            </td>
+        </tr>
+        }
+    }
+
+</table>
+<h2> Assigned To You</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RequestedExtensionDeadline)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.Multiplier)
-        </th>*@
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeadlineDate)
+        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
+    if (item.AssignedTo == GetFirstName(Context.User.Identity.Name))
+    {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AssignedTo)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -80,42 +129,93 @@
         <td>
             @Html.DisplayFor(modelItem => item.GoldValue)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.IsAssigned)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.IsCompleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsConfirmed)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.MaturityLevel)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.DeadlineDate)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.NeedExtension)
-        </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.RequestedExtensionDeadline)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Multiplier)
-        </td>*@
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ChoreID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ChoreID }) |
             @Html.ActionLink("Extension", "EditExtension", new { id = item.ChoreID })
 
         </td>
     </tr>
+    }
 }
 
 </table>
+<h2> Completed </h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeadlineDate)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.AssignedTo == GetFirstName(Context.User.Identity.Name) && item.IsCompleted == true)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BronzeValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SilverValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoldValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaturityLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeadlineDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ChoreID })
+                @*@Html.ActionLink("Extension", "EditExtension", new { id = item.ChoreID })*@
+
+            </td>
+        </tr>
+        }
+    }
+</table>
+
+
+
+
 @functions{
     public bool IsUserInRole(string loginName, string roleName)
     {
@@ -138,5 +238,24 @@
             return false;
         }
     }
+    public string GetFirstName(string loginname)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            var user = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginname));
+            var wallet = db.SYSUserProfiles.Where(o => o.SYSUserID.Equals(user.FirstOrDefault().SYSUserID));
+            var firstname = wallet.FirstOrDefault().FirstName;
 
+            if (wallet.Any())
+            {
+
+                return firstname;
+            }
+            else
+            {
+                return "Name not found";
+                //no first name found
+            }
+        }
+    }
 }

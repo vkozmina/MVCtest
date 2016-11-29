@@ -74,9 +74,9 @@
                 </h3>
             </div>
             <div id="divUserListContainer" class="panel-body collapse in">
-                @{
+                @*@{
                     var chores = getChores(Context.User.Identity.Name);
-                }
+                }*@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -154,30 +154,5 @@
         }
     }
 
-    public List<string> getChores(string loginName)
-    {
-        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
-        {
-            var user = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName));
-            var wallet = db.SYSUserProfiles.Where(o => o.SYSUserID.Equals(user.FirstOrDefault().SYSUserID));
-            var firstName = wallet.FirstOrDefault().FirstName;
-            var chores = db.Chores.Where(c => c.AssignedTo.Equals(firstName));
-
-
-            List<string> choresList = new List<string>();
-            if (wallet.Any())
-            {
-                foreach (var chore in chores)
-                {
-                    choresList.Add(chores.FirstOrDefault().Description);
-                }
-                //(chores.FirstOrDefault().ToString());
-                return choresList;
-            }
-            else
-            {
-                //No chores found
-            }
-        }
-    }
+   
 }
