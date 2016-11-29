@@ -16,8 +16,14 @@ namespace MVC5RealWorld.Controllers
         private DB_A11531_francistestEntities db = new DB_A11531_francistestEntities();
 
         // GET: Rewards
-        [Authorize]
+        [AuthorizeRoles("Parent", "Admin")]
         public ActionResult Index()
+        {
+            return View(db.Rewards.ToList());
+        }
+
+        [AuthorizeRoles("Toddler", "Child", "Teen", "Young Adult", "Adult")]
+        public ActionResult IndexChild()
         {
             return View(db.Rewards.ToList());
         }

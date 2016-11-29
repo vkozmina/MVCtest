@@ -29,5 +29,7 @@ namespace MVC5RealWorld.Models.DB
         public Nullable<System.DateTime> DateOfBirth { get; set; }
     
         public virtual SYSUser SYSUser { get; set; }
+        public virtual SYSUserProfile SYSUserProfile1 { get; set; }
+        public virtual SYSUserProfile SYSUserProfile2 { get; set; }
     }
 }

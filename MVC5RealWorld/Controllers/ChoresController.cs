@@ -18,8 +18,14 @@ namespace MVC5RealWorld.Controllers
         private DB_A11531_francistestEntities db = new DB_A11531_francistestEntities();
 
         // GET: Chores
-        [Authorize]
+        [AuthorizeRoles("Admin", "Parents")]
         public ActionResult Index()
+        {
+            return View(db.Chores.ToList());
+        }
+
+        [AuthorizeRoles("Toddler", "Child", "Teen", "Young Adult", "Adult")]
+        public ActionResult IndexChild()
         {
             return View(db.Chores.ToList());
         }

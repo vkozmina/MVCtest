@@ -15,6 +15,7 @@ namespace MVC5RealWorld.Models.DB
     public partial class Reward
     {
         public int RewardID { get; set; }
+        public string AssignedTo { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public Nullable<int> BronzeValue { get; set; }

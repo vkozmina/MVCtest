@@ -4,16 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2dc4042f8b144357a16311b8e5557cbe" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_A11531_francistestModel.Chore" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+      <Diagram DiagramId="0f90d1513ddf47529c3408ff94da282d" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A11531_francistestModel.Chore" Width="1.5" PointX="5.75" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A11531_francistestModel.LOOKUPRole" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A11531_francistestModel.Reward" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUser" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUserProfile" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUserRole" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A11531_francistestModel.Reward" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUser" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUserProfile" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A11531_francistestModel.SYSUserRole" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="DB_A11531_francistestModel.FK__SYSUserRo__LOOKU__22AA2996" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A11531_francistestModel.FK__SYSUserPr__SYSUs__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A11531_francistestModel.FK__SYSUserRo__SYSUs__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A11531_francistestModel.FK_SYSUserProfile_SYSUserProfile" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

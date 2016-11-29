@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Data.Entity
+@using MVC5RealWorld.Models.DB
+@using MVC5RealWorld.Models.EntityManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,10 +34,27 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Documents", "Documents", "Home")</li>
                     <li>@Html.ActionLink("Children", "AdminOnly", "Home")</li>
-                    <li>@Html.ActionLink("Chores", "Index", "Chores")</li>
-                    <li>@Html.ActionLink("Rewards", "Index", "Rewards")</li>
+                        @if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
+                        {
+                            <li>@Html.ActionLink("Chores", "Index", "Chores")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Chores", "IndexChild", "Chores")</li>
+                        }
+                    
+                    
+
+                    @if (IsUserInRole(Context.User.Identity.Name, "Admin") || IsUserInRole(Context.User.Identity.Name, "Parent"))
+                    {
+                        <li>@Html.ActionLink("Rewards", "Index", "Rewards")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Rewards", "IndexChild", "Rewards")</li>
+                    }
                     @if (Context.User.Identity.Name.Length > 0)
-                    {//Context.User.Identity.Name
+                    {
                         <li>@Html.ActionLink("Edit Profile", "EditProfile", "Home")</li>
                         <li>@Html.ActionLink("Signout", "SignOut", "Account")</li>
                     }
@@ -53,8 +74,33 @@
             <p>Developed by Viktoriya Kozmina and Francis Schommer</p>
         </footer>
     </div>
+
+    
+
+
 </body>
 </html>
 
+@functions{
+    public bool IsUserInRole(string loginName, string roleName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+            if (SU != null)
+            {
+                var roles = from q in db.SYSUserRoles
+                            join r in db.LOOKUPRoles on q.LOOKUPRoleID equals r.LOOKUPRoleID
+                            where r.RoleName.Equals(roleName) && q.SYSUserID.Equals(SU.SYSUserID)
+                            select r.RoleName;
 
+                if (roles != null)
+                {
+                    return roles.Any();
+                }
+            }
 
+            return false;
+        }
+    } 
+}

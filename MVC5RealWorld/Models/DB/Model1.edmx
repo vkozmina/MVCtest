@@ -9,13 +9,13 @@
           <Key>
             <PropertyRef Name="ChoreID" />
           </Key>
-          <Property Name="ChoreID" Type="int" Nullable="false" />
+          <Property Name="ChoreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignedTo" Type="varchar" MaxLength="50" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="BronzeValue" Type="int" />
           <Property Name="SilverValue" Type="int" />
           <Property Name="GoldValue" Type="int" />
-          <Property Name="AssignedTo" Type="varchar" MaxLength="50" />
           <Property Name="IsAssigned" Type="bit" />
           <Property Name="IsCompleted" Type="bit" />
           <Property Name="IsConfirmed" Type="bit" />
@@ -42,7 +42,8 @@
           <Key>
             <PropertyRef Name="RewardID" />
           </Key>
-          <Property Name="RewardID" Type="int" Nullable="false" />
+          <Property Name="RewardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignedTo" Type="varchar" MaxLength="50" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="BronzeValue" Type="int" />
@@ -130,6 +131,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SYSUserProfile_SYSUserProfile">
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="1" />
+          <End Role="SYSUserProfile1" Type="Self.SYSUserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUserProfile">
+              <PropertyRef Name="SYSUserProfileID" />
+            </Principal>
+            <Dependent Role="SYSUserProfile1">
+              <PropertyRef Name="SYSUserProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_A11531_francistestModelStoreContainer">
           <EntitySet Name="Chores" EntityType="Self.Chores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOOKUPRole" EntityType="Self.LOOKUPRole" Schema="dbo" store:Type="Tables" />
@@ -149,6 +162,10 @@
             <End Role="SYSUser" EntitySet="SYSUser" />
             <End Role="SYSUserRole" EntitySet="SYSUserRole" />
           </AssociationSet>
+          <AssociationSet Name="FK_SYSUserProfile_SYSUserProfile" Association="Self.FK_SYSUserProfile_SYSUserProfile">
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfile" />
+            <End Role="SYSUserProfile1" EntitySet="SYSUserProfile" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -159,13 +176,13 @@
           <Key>
             <PropertyRef Name="ChoreID" />
           </Key>
-          <Property Name="ChoreID" Type="Int32" Nullable="false" />
+          <Property Name="ChoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="BronzeValue" Type="Int32" />
           <Property Name="SilverValue" Type="Int32" />
           <Property Name="GoldValue" Type="Int32" />
-          <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsAssigned" Type="Boolean" />
           <Property Name="IsCompleted" Type="Boolean" />
           <Property Name="IsConfirmed" Type="Boolean" />
@@ -193,7 +210,8 @@
           <Key>
             <PropertyRef Name="RewardID" />
           </Key>
-          <Property Name="RewardID" Type="Int32" Nullable="false" />
+          <Property Name="RewardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="BronzeValue" Type="Int32" />
@@ -234,6 +252,8 @@
           <Property Name="GoldBalance" Type="Int32" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SYSUser" Relationship="Self.FK__SYSUserPr__SYSUs__1CF15040" FromRole="SYSUserProfile" ToRole="SYSUser" />
+          <NavigationProperty Name="SYSUserProfile1" Relationship="Self.FK_SYSUserProfile_SYSUserProfile" FromRole="SYSUserProfile" ToRole="SYSUserProfile1" />
+          <NavigationProperty Name="SYSUserProfile2" Relationship="Self.FK_SYSUserProfile_SYSUserProfile" FromRole="SYSUserProfile1" ToRole="SYSUserProfile" />
         </EntityType>
         <EntityType Name="SYSUserRole">
           <Key>
@@ -286,6 +306,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SYSUserProfile_SYSUserProfile">
+          <End Role="SYSUserProfile" Type="Self.SYSUserProfile" Multiplicity="1" />
+          <End Role="SYSUserProfile1" Type="Self.SYSUserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SYSUserProfile">
+              <PropertyRef Name="SYSUserProfileID" />
+            </Principal>
+            <Dependent Role="SYSUserProfile1">
+              <PropertyRef Name="SYSUserProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_A11531_francistestEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chores" EntityType="Self.Chore" />
           <EntitySet Name="LOOKUPRoles" EntityType="Self.LOOKUPRole" />
@@ -305,6 +337,10 @@
             <End Role="SYSUser" EntitySet="SYSUsers" />
             <End Role="SYSUserRole" EntitySet="SYSUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_SYSUserProfile_SYSUserProfile" Association="Self.FK_SYSUserProfile_SYSUserProfile">
+            <End Role="SYSUserProfile" EntitySet="SYSUserProfiles" />
+            <End Role="SYSUserProfile1" EntitySet="SYSUserProfiles" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -316,12 +352,12 @@
             <EntityTypeMapping TypeName="DB_A11531_francistestModel.Chore">
               <MappingFragment StoreEntitySet="Chores">
                 <ScalarProperty Name="ChoreID" ColumnName="ChoreID" />
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="BronzeValue" ColumnName="BronzeValue" />
                 <ScalarProperty Name="SilverValue" ColumnName="SilverValue" />
                 <ScalarProperty Name="GoldValue" ColumnName="GoldValue" />
-                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
                 <ScalarProperty Name="IsAssigned" ColumnName="IsAssigned" />
                 <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
                 <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
@@ -351,6 +387,7 @@
             <EntityTypeMapping TypeName="DB_A11531_francistestModel.Reward">
               <MappingFragment StoreEntitySet="Rewards">
                 <ScalarProperty Name="RewardID" ColumnName="RewardID" />
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="BronzeValue" ColumnName="BronzeValue" />
