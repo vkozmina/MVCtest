@@ -15,13 +15,12 @@
                 <th>Last Name</th>
                 <th>Gender</th>
                 <th>Role</th>
-                <th></th>
                 <th>Date of Birth</th>
                 <th>Bronze Balance</th>
                 <th>Silver Balance</th>
                 <th>Gold Balance</th>
                 <th></th>
-               
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,11 +34,12 @@
                     <td> @Html.DisplayFor(m => i.LastName)</td>
                     <td> @Html.DisplayFor(m => i.Gender)</td>
                     <td> @Html.DisplayFor(m => i.RoleName)</td>
-                    <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
+                   @*<td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>*@
                     <td> @Html.DisplayFor(m => i.DateOfBirth)</td>
                     <td> @Html.DisplayFor(m => i.BronzeBalance)</td>
                     <td> @Html.DisplayFor(m => i.SilverBalance)</td>
                     <td> @Html.DisplayFor(m => i.GoldBalance)</td>
+                    <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
                     
                     <td><a href="javacript:void(0)" class="lnkEdit">Edit</a></td>
                     <td><a href="javacript:void(0)" class="lnkDelete">Delete</a></td>
@@ -208,11 +208,11 @@
             $("#txtFirstName").val(row.find("td:eq(3)").html().trim());
             $("#txtLastName").val(row.find("td:eq(4)").html().trim());
             $("#ddlGender").val(row.find("td:eq(5)").html().trim());
-            $("#ddlRoles").val(row.find("td:eq(7) > input").val());
-            $("#dateOfBirth").val(row.find("td:eq(8) > input").val());
-            $("#bronzeBalance").val(row.find("td:eq(9)").val());
-            $("#silverBalance").val(row.find("td:eq(10)").val());
-            $("#goldBalance").val(row.find("td:eq(11)").val());
+            $("#ddlRoles").val(row.find("td:eq(11) > input").val());
+            $("#dateOfBirth").val(row.find("td:eq(7)").val());
+            $("#bronzeBalance").val(row.find("td:eq(8)").val());
+            $("#silverBalance").val(row.find("td:eq(9)").val());
+            $("#goldBalance").val(row.find("td:eq(10)").val());
             $("#divEdit").dialog("open");
             return false;
         });
