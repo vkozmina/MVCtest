@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ADDicting Chores</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("ADDicting Chores", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Addicting Chores", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Documents", "Documents", "Home")</li>
+                    <li>@Html.ActionLink("Children", "AdminOnly", "Home")</li>
+                    <li>@Html.ActionLink("Chores", "Index", "Chores")</li>
+                    <li>@Html.ActionLink("Rewards", "Index", "Rewards")</li>
+                    @if (Context.User.Identity.Name.Length > 0)
+                    {//Context.User.Identity.Name
+                        <li>@Html.ActionLink("Edit Profile", "EditProfile", "Home")</li>
+                        <li>@Html.ActionLink("Signout", "SignOut", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "LogIn", "Account")</li>
+                        <li>@Html.ActionLink("Signup Now!", "SignUp", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Developed by Viktoriya Kozmina and Francis Schommer</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+

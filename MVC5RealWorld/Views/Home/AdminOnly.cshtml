@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Manage Children";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>For Admin users only!</h2>
+If you're seeing this, you're an Admin! :)
+@Html.ActionLink("Create new account", "SignUp","Account")
+
+<div id="divUserListContainer">
+    @Html.Action("ManageUserPartial", "Home")
+</div>  

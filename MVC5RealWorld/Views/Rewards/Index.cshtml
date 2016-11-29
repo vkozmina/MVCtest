@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVC5RealWorld.Models.DB.Reward>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Multiplier)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BronzeValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SilverValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoldValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaturityLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Multiplier)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RewardID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RewardID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RewardID })
+        </td>
+    </tr>
+}
+
+</table>

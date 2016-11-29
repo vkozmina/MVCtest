@@ -1,0 +1,51 @@
+﻿@using System.Data.Entity
+@using MVC5RealWorld.Models.DB
+@using MVC5RealWorld.Models.EntityManager
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hi <b>@Context.User.Identity.Name</b>! Welcome to my first MVC 5 Web App!</h2>  
+
+@IsUserInRole(Context.User.Identity.Name,"Admin")
+@IsUserInRole(Context.User.Identity.Name, "Toddler")
+
+<div  id = "divUserListContainer" >
+    @if (IsUserInRole(Context.User.Identity.Name, "Admin"))
+    { @:yes you're an admin
+        @Html.Action("ManageUserPartial", "Home")
+    }
+    @if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
+    { @:YOU ARE SUCH A GOOD TODDLER YES YOU ARE :)
+
+    }
+</div>
+
+
+
+@functions{
+        public bool IsUserInRole(string loginName, string roleName)
+    {
+        using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
+        {
+            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+            if (SU != null)
+            {
+                var roles = from q in db.SYSUserRoles
+                            join r in db.LOOKUPRoles on q.LOOKUPRoleID equals r.LOOKUPRoleID
+                            where r.RoleName.Equals(roleName) && q.SYSUserID.Equals(SU.SYSUserID)
+                            select r.RoleName;
+
+                if (roles != null)
+                {
+                    return roles.Any();
+                }
+            }
+
+            return false;
+        }
+    }
+
+}

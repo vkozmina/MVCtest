@@ -1,0 +1,118 @@
+﻿@model IEnumerable<MVC5RealWorld.Models.DB.Chore>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignedTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAssigned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsCompleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsConfirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeadlineDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NeedExtension)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedExtensionDeadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Multiplier)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BronzeValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SilverValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoldValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignedTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAssigned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsConfirmed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaturityLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeadlineDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NeedExtension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestedExtensionDeadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Multiplier)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ChoreID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ChoreID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ChoreID })
+        </td>
+    </tr>
+}
+
+</table>

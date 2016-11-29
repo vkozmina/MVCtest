@@ -1,0 +1,60 @@
+﻿<h2>Index</h2>
+<br />
+   
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>ADDicting Chores</h1>
+    <p class="lead">
+        Shaun always had difficulties completing chores. He would be told what needed to be done that day and when the parents left he would get distracted and forget about it. When the parents arrived home they would argue with him about how his room still wasn’t clean or that the dishes were still in the dishwasher, causing much frustration for all parties involved.
+        Sometimes talking isn’t enough to get a task solidified and doesn’t provide enough motive to the person being asked.
+    </p>
+    <p><a href="https://docs.google.com/presentation/d/1WvFhWiNLredh7wHyxwHu9GboyMiUt1mHAgD8Xf8jiqM/edit?usp=sharing" class="btn btn-primary btn-lg" target="_blank">Presentation &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Parent role</h2>
+        <p>
+            Using the ADDicting chores app, Shaun’s parents can set up chores for him like clean his room and empty the dishwasher,
+            checking in with him and confirming by watching him sign up for the chores so he can check what needs to be done that day,
+            and the app helps incentivise him with a reward system for completing his tasks.
+        </p>
+        <p><a class="btn btn-default" onclick="javascript:return parentSubmit();">Push parents buttons &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Reward Library</h2>
+        <p>
+            Shaun is able to earn Chore Credits (CCs) for doing chores, and if he saves up his credits,
+            he can finally get that Playstation 2 he's been wanting! If he doesn't want to save up his credits that long,
+            he can always get small things like an hour of video games, or a new basketball he would throw around with his friends (if he had any).
+            Some aspects of Shauns life cost CCs even if he doesn't want to spend them. Things like going out to dinner with the family, or six flags, or soccer practice.
+            If his wallet has a negative balance, he starts losing the privileges more kids are taking for granted.
+        </p>
+        <p><a class="btn btn-default" onclick="javascript:return rewardSubmit();">Look at the rewards available &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Chore Library</h2>
+        <p>
+            Shaun is able to go online and check out what chores are available for him to do! He can see their deadlines, and their rewards.
+            If he completes chores, he gets the CCs if the parent signs off on it.
+            If he doesn't complete them by the deadline, there is a punishment (loss of CCs) that goes along with it, so he better not forget to do his chores!
+            There are bronze, silver, and gold CCs.
+        </p>
+        <p><a class="btn btn-default" onclick="javascript:return choreSubmit();">Volunteer to do chores &raquo;</a></p>
+    </div>
+</div>
+<script>
+    function parentSubmit() {
+        confirm("Please don't push the parents buttons.");
+    }
+    function rewardSubmit() {
+        confirm("No rewards found :(");
+    }
+    function choreSubmit() {
+        confirm("What's wrong with wanting to do chores??");
+    }
+</script>

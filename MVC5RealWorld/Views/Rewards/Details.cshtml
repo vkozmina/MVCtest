@@ -1,0 +1,75 @@
+﻿@model MVC5RealWorld.Models.DB.Reward
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reward</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BronzeValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SilverValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoldValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaturityLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Multiplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Multiplier)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RewardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

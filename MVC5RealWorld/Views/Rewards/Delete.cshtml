@@ -1,0 +1,81 @@
+﻿@model MVC5RealWorld.Models.DB.Reward
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Reward</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BronzeValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BronzeValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SilverValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SilverValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoldValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoldValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaturityLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaturityLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Multiplier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Multiplier)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
