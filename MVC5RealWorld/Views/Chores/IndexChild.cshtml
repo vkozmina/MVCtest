@@ -221,7 +221,7 @@
     {
         using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
         {
-            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+            SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName)).FirstOrDefault();
             if (SU != null)
             {
                 var roles = from q in db.SYSUserRoles
