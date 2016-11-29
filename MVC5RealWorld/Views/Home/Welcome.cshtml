@@ -7,20 +7,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Hi <b>@Context.User.Identity.Name</b>! Welcome to my first MVC 5 Web App!</h2>  
+<h2>Hi <b>@Context.User.Identity.Name</b>!</h2>  
 
-@IsUserInRole(Context.User.Identity.Name,"Admin")
-@IsUserInRole(Context.User.Identity.Name, "Toddler")
+@*@IsUserInRole(Context.User.Identity.Name,"Admin")
+@IsUserInRole(Context.User.Identity.Name, "Toddler")*@
 
 <div  id = "divUserListContainer" >
     @if (IsUserInRole(Context.User.Identity.Name, "Admin"))
-    { @:yes you're an admin
+    { @*@:yes you're an admin*@
         @Html.Action("ManageUserPartial", "Home")
     }
-    @if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
+    @*@if (IsUserInRole(Context.User.Identity.Name, "Toddler"))
     { @:YOU ARE SUCH A GOOD TODDLER YES YOU ARE :)
 
-    }
+    }*@
 </div>
 
 

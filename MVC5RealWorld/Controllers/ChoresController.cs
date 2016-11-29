@@ -17,6 +17,22 @@ namespace MVC5RealWorld.Controllers
     {
         private DB_A11531_francistestEntities db = new DB_A11531_francistestEntities();
 
+
+        [Authorize]
+        public ActionResult EditExtension(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Chore chore = db.Chores.Find(id);
+            if (chore == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chore);
+        }
+
         // GET: Chores
         [AuthorizeRoles("Admin", "Parents")]
         public ActionResult Index()
@@ -66,6 +82,7 @@ namespace MVC5RealWorld.Controllers
            
             if (ModelState.IsValid)
             {
+
                 db.Chores.Add(chore);
                 db.SaveChanges();
                 return RedirectToAction("Index");

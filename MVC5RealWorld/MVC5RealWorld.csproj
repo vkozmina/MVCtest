@@ -254,9 +254,10 @@
     <Content Include="Views\Rewards\Details.cshtml" />
     <Content Include="Views\Rewards\Edit.cshtml" />
     <Content Include="Views\Rewards\Index.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
     <Content Include="Views\Chores\IndexChild.cshtml" />
     <Content Include="Views\Rewards\IndexChild.cshtml" />
-    <Content Include="Views\Home\EditProfile.cshtml" />
+    <Content Include="Views\Chores\EditExtension.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
