@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace MVC5RealWorld.Models.DB
 {
     using System;
@@ -25,9 +27,15 @@ namespace MVC5RealWorld.Models.DB
         public Nullable<bool> IsCompleted { get; set; }
         public Nullable<bool> IsConfirmed { get; set; }
         public string MaturityLevel { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> StartDate { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public Nullable<bool> NeedExtension { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> RequestedExtensionDeadline { get; set; }
         public Nullable<decimal> Multiplier { get; set; }
     }

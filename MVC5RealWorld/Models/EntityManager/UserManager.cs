@@ -32,11 +32,15 @@ namespace MVC5RealWorld.Models.EntityManager
                 SUP.FirstName = user.FirstName;
                 SUP.LastName = user.LastName;
                 SUP.Gender = user.Gender;
+
                 SUP.RowCreatedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
                 SUP.RowModifiedSYSUserID = user.SYSUserID > 0 ? user.SYSUserID : 1;
                 SUP.RowCreatedDateTime = DateTime.Now;
                 SUP.RowModifiedDateTime = DateTime.Now;
-
+                SUP.DateOfBirth = user.DateOfBirth;
+                SUP.BronzeBalance = SUP.BronzeBalance + user.BronzeBalance;
+                SUP.SilverBalance = SUP.SilverBalance + user.SilverBalance;
+                SUP.GoldBalance = SUP.GoldBalance + user.GoldBalance;
                 db.SYSUserProfiles.Add(SUP);
                 db.SaveChanges();
 
@@ -142,6 +146,10 @@ namespace MVC5RealWorld.Models.EntityManager
                         UPV.FirstName = SUP.FirstName;
                         UPV.LastName = SUP.LastName;
                         UPV.Gender = SUP.Gender;
+                        UPV.DateOfBirth = SUP.DateOfBirth;
+                        UPV.BronzeBalance = SUP.BronzeBalance;
+                        UPV.SilverBalance = SUP.SilverBalance;
+                        UPV.GoldBalance = SUP.GoldBalance;
                     }
 
                     var SUR = db.SYSUserRoles.Where(o => o.SYSUserID.Equals(u.SYSUserID));
@@ -219,7 +227,7 @@ namespace MVC5RealWorld.Models.EntityManager
                         SU.RowModifiedSYSUserID = user.SYSUserID;
                         SU.RowCreatedDateTime = DateTime.Now;
                         SU.RowMOdifiedDateTime = DateTime.Now;
-
+                        
                         db.SaveChanges();
 
                         var userProfile = db.SYSUserProfiles.Where(o => o.SYSUserID == user.SYSUserID);
@@ -234,7 +242,16 @@ namespace MVC5RealWorld.Models.EntityManager
                             SUP.RowModifiedSYSUserID = user.SYSUserID;
                             SUP.RowCreatedDateTime = DateTime.Now;
                             SUP.RowModifiedDateTime = DateTime.Now;
-
+                            SUP.DateOfBirth = user.DateOfBirth;
+                            if (SUP.BronzeBalance == null)
+                                SUP.BronzeBalance=0;
+                            if (SUP.SilverBalance == null)
+                                SUP.SilverBalance = 0;
+                            if (SUP.GoldBalance == null)
+                                SUP.GoldBalance = 0;
+                            SUP.BronzeBalance = SUP.BronzeBalance + user.BronzeBalance;
+                            SUP.SilverBalance = SUP.SilverBalance + user.SilverBalance;
+                            SUP.GoldBalance = SUP.GoldBalance + user.GoldBalance;
                             db.SaveChanges();
                         }
 
@@ -336,6 +353,11 @@ namespace MVC5RealWorld.Models.EntityManager
                         UPV.FirstName = SUP.FirstName;
                         UPV.LastName = SUP.LastName;
                         UPV.Gender = SUP.Gender;
+                        UPV.DateOfBirth = SUP.DateOfBirth;
+                        UPV.BronzeBalance = SUP.BronzeBalance;
+                        UPV.SilverBalance = SUP.SilverBalance;
+                        UPV.GoldBalance = SUP.GoldBalance;
+                        
                     }
 
                     var SUR = db.SYSUserRoles.Find(userID);

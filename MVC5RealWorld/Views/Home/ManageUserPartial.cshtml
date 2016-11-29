@@ -14,13 +14,14 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>
-                <th colspan="2">Role</th>
+                <th>Role</th>
+                <th></th>
                 <th>Date of Birth</th>
                 <th>Bronze Balance</th>
                 <th>Silver Balance</th>
                 <th>Gold Balance</th>
                 <th></th>
-                <th></th>
+               
             </tr>
         </thead>
         <tbody>
@@ -34,11 +35,12 @@
                     <td> @Html.DisplayFor(m => i.LastName)</td>
                     <td> @Html.DisplayFor(m => i.Gender)</td>
                     <td> @Html.DisplayFor(m => i.RoleName)</td>
+                    <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
                     <td> @Html.DisplayFor(m => i.DateOfBirth)</td>
                     <td> @Html.DisplayFor(m => i.BronzeBalance)</td>
                     <td> @Html.DisplayFor(m => i.SilverBalance)</td>
                     <td> @Html.DisplayFor(m => i.GoldBalance)</td>
-                    <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
+                    
                     <td><a href="javacript:void(0)" class="lnkEdit">Edit</a></td>
                     <td><a href="javacript:void(0)" class="lnkDelete">Delete</a></td>
                 </tr>
@@ -94,7 +96,25 @@
         <tr>
             <td>Date of Birth</td>
             <td>
-                <input type="date" id="DateOfBirth" class="form-control"/>
+                <input type="date" id="dateOfBirth" class="form-control"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Bronze Balance</td>
+            <td>
+                <input type="number" id="bronzeBalance" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Silver Balance</td>
+            <td>
+                <input type="number" id="silverBalance" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Gold Balance</td>
+            <td>
+                <input type="number" id="goldBalance" class="form-control" />
             </td>
         </tr>
     </table>
@@ -124,8 +144,11 @@
                             var fName = $("#txtFirstName").val();
                             var lName = $("#txtLastName").val();
                             var gender = $("#ddlGender").val();
-                            var dob = $("#DateOfBirth").val();
-                            UpdateUser(id, loginName, loginPass, fName, lName, gender, role, dob);
+                            var dob = $("#dateOfBirth").val();
+                            var bb = $("#bronzeBalance").val();
+                            var sb = $("#silverBalance").val();
+                            var gb = $("#goldBalance").val();
+                            UpdateUser(id, loginName, loginPass, fName, lName, gender, dob,bb,sb,gb, role);
                             $(this).dialog("destroy");
                         },
                         Cancel: function () { $(this).dialog("destroy"); }
@@ -133,7 +156,7 @@
                 });
         }
 
-        function UpdateUser(id, logName, logPass, fName, lName, gender, role, dob) {
+        function UpdateUser(id, logName, logPass, fName, lName, gender, dob,bb,sb,gb, role) {
             $.ajax({
                 type: "POST",
                 url: "@(Url.Action("UpdateUserData", "Home"))",
@@ -145,7 +168,10 @@
                     lastName: lName,
                     gender: gender,
                     roleID: role,
-                    dateOfBirth: dob
+                    dateOfBirth: dob,
+                    bbal: bb,
+                    sbal : sb,
+                    gbal: gb
                 },
                 success: function (data) {
                     $("#divUserListContainer")
@@ -182,8 +208,11 @@
             $("#txtFirstName").val(row.find("td:eq(3)").html().trim());
             $("#txtLastName").val(row.find("td:eq(4)").html().trim());
             $("#ddlGender").val(row.find("td:eq(5)").html().trim());
-            $("#ddlRoles").val(row.find("td:eq(6)  input").val());
-            $("#DateOfBirth").val(row.find("td:eq(7)  input").val());
+            $("#ddlRoles").val(row.find("td:eq(7) > input").val());
+            $("#dateOfBirth").val(row.find("td:eq(8) > input").val());
+            $("#bronzeBalance").val(row.find("td:eq(9)").val());
+            $("#silverBalance").val(row.find("td:eq(10)").val());
+            $("#goldBalance").val(row.find("td:eq(11)").val());
             $("#divEdit").dialog("open");
             return false;
         });
