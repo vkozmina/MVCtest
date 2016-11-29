@@ -26,24 +26,27 @@
         <tbody>
             @foreach (var i in Model.UserProfile)
             {
-                <tr>
-                    <td> @Html.DisplayFor(m => i.SYSUserID)</td>
-                    <td> @Html.DisplayFor(m => i.LoginName)</td>
-                    <td> @Html.HiddenFor(m => i.Password)</td>
-                    <td> @Html.DisplayFor(m => i.FirstName)</td>
-                    <td> @Html.DisplayFor(m => i.LastName)</td>
-                    <td> @Html.DisplayFor(m => i.Gender)</td>
-                    <td> @Html.DisplayFor(m => i.RoleName)</td>
-                   @*<td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>*@
-                    <td> @Html.DisplayFor(m => i.DateOfBirth)</td>
-                    <td> @Html.DisplayFor(m => i.BronzeBalance)</td>
-                    <td> @Html.DisplayFor(m => i.SilverBalance)</td>
-                    <td> @Html.DisplayFor(m => i.GoldBalance)</td>
-                    <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
+                if (i.FirstName != "unassigned")
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(m => i.SYSUserID)</td>
+                        <td> @Html.DisplayFor(m => i.LoginName)</td>
+                        <td> @Html.HiddenFor(m => i.Password)</td>
+                        <td> @Html.DisplayFor(m => i.FirstName)</td>
+                        <td> @Html.DisplayFor(m => i.LastName)</td>
+                        <td> @Html.DisplayFor(m => i.Gender)</td>
+                        <td> @Html.DisplayFor(m => i.RoleName)</td>
+                       @*<td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>*@
+                        <td> @Html.DisplayFor(m => i.DateOfBirth)</td>
+                        <td> @Html.DisplayFor(m => i.BronzeBalance)</td>
+                        <td> @Html.DisplayFor(m => i.SilverBalance)</td>
+                        <td> @Html.DisplayFor(m => i.GoldBalance)</td>
+                        <td> @Html.HiddenFor(m => i.LOOKUPRoleID)</td>
                     
-                    <td><a href="javacript:void(0)" class="lnkEdit">Edit</a></td>
-                    <td><a href="javacript:void(0)" class="lnkDelete">Delete</a></td>
-                </tr>
+                        <td><a href="javacript:void(0)" class="lnkEdit">Edit</a></td>
+                        <td><a href="javacript:void(0)" class="lnkDelete">Delete</a></td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -234,3 +237,4 @@
 
 
 </script>    
+

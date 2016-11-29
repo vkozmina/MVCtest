@@ -84,7 +84,7 @@ namespace MVC5RealWorld.Models.EntityManager
         {
             using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
             {
-                SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName))?.FirstOrDefault();
+                SYSUser SU = db.SYSUsers.Where(o => o.LoginName.ToLower().Equals(loginName)).FirstOrDefault();
                 if (SU != null)
                 {
                     var roles = from q in db.SYSUserRoles
@@ -180,8 +180,8 @@ namespace MVC5RealWorld.Models.EntityManager
             userID = GetUserID(loginName);
             using (DB_A11531_francistestEntities db = new DB_A11531_francistestEntities())
             {
-                userAssignedRoleID = db.SYSUserRoles.Where(o => o.SYSUserID == userID)?.FirstOrDefault().LOOKUPRoleID;
-                userGender = db.SYSUserProfiles.Where(o => o.SYSUserID == userID)?.FirstOrDefault().Gender;
+                userAssignedRoleID = db.SYSUserRoles.Where(o => o.SYSUserID == userID).FirstOrDefault().LOOKUPRoleID;
+                userGender = db.SYSUserProfiles.Where(o => o.SYSUserID == userID).FirstOrDefault().Gender;
             }
 
             List<Gender> genders = new List<Gender>();

@@ -107,9 +107,21 @@
             List<int> moniesList = new List<int>();
             if (wallet.Any())
             {
-                moniesList.Add(wallet.FirstOrDefault().BronzeBalance.Value);
-                moniesList.Add(wallet.FirstOrDefault().SilverBalance.Value);
-                moniesList.Add(wallet.FirstOrDefault().GoldBalance.Value);
+                try
+                {
+                    moniesList.Add(wallet.FirstOrDefault().BronzeBalance.Value);
+                    moniesList.Add(wallet.FirstOrDefault().SilverBalance.Value);
+                    moniesList.Add(wallet.FirstOrDefault().GoldBalance.Value);
+                }
+                catch (Exception)
+                {
+
+                    // throw;
+                    moniesList.Add(0);
+                    moniesList.Add(0);
+                    moniesList.Add(0);
+                }
+
                 return moniesList;
             }
             else
@@ -122,5 +134,5 @@
         }
     }
 
-   
+
 }
