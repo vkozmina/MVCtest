@@ -105,7 +105,8 @@
             @Html.DisplayFor(modelItem => item.Multiplier)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ChoreID }) 
+            @Html.ActionLink("Details", "Details", new { id=item.ChoreID }) |
+            @Html.ActionLink("Extension", "EditExtension", new { id = item.ChoreID })
 
         </td>
     </tr>

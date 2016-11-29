@@ -19,9 +19,18 @@ namespace MVC5RealWorld.Controllers
 
 
         [Authorize]
-        public ActionResult Claim()
+        public ActionResult EditExtension(int? id)
         {
-            return null;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Chore chore = db.Chores.Find(id);
+            if (chore == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chore);
         }
 
         // GET: Chores
@@ -73,6 +82,7 @@ namespace MVC5RealWorld.Controllers
            
             if (ModelState.IsValid)
             {
+
                 db.Chores.Add(chore);
                 db.SaveChanges();
                 return RedirectToAction("Index");

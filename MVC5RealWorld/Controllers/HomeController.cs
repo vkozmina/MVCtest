@@ -61,7 +61,7 @@ namespace MVC5RealWorld.Controllers
         }
 
         [Authorize]
-        public ActionResult UpdateUserData(int userID, string loginName, string password, string firstName, string lastName, string gender, int roleID = 0)
+        public ActionResult UpdateUserData(int userID, string loginName, string password, string firstName, string lastName, string gender, int roleID)
         {
             UserProfileView UPV = new UserProfileView();
             UPV.SYSUserID = userID;
